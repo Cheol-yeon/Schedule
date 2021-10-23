@@ -5,6 +5,7 @@ import java.util.Date;
 public class Main {
 	private int user_seq; // Main 테이블 시퀀스명
 	private String btn_name; // 버튼 이름
+	private String type; // 유저 타입 ex) 학생, 교수, 매니저
 	private String userId; // 유저 아이디
 	private String userName; // 유저 이름
 	private String pwd; // 유저 비밀번호
@@ -15,10 +16,11 @@ public class Main {
 	
 	public Main() {}
 
-	public Main(int user_seq, String btn_name, String userId, String userName, String pwd, int content_no,
+	public Main(int user_seq, String btn_name, String type, String userId, String userName, String pwd, int content_no,
 			Date rsv_date, Date startTime, Date endTime) {
 		this.user_seq = user_seq;
 		this.btn_name = btn_name;
+		this.type = type;
 		this.userId = userId;
 		this.userName = userName;
 		this.pwd = pwd;
@@ -42,6 +44,14 @@ public class Main {
 
 	public void setBtn_name(String btn_name) {
 		this.btn_name = btn_name;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getUserId() {
@@ -102,9 +112,9 @@ public class Main {
 
 	@Override
 	public String toString() {
-		return "Main [user_seq=" + user_seq + ", btn_name=" + btn_name + ", userId=" + userId + ", userName=" + userName
-				+ ", pwd=" + pwd + ", content_no=" + content_no + ", rsv_date=" + rsv_date + ", startTime=" + startTime
-				+ ", endTime=" + endTime + "]";
+		return "Main [user_seq=" + user_seq + ", btn_name=" + btn_name + ", type=" + type + ", userId=" + userId
+				+ ", userName=" + userName + ", pwd=" + pwd + ", content_no=" + content_no + ", rsv_date=" + rsv_date
+				+ ", startTime=" + startTime + ", endTime=" + endTime + "]";
 	}
 	
 }
