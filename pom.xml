@@ -25,6 +25,13 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.12.0</version>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/javax.servlet.jsp/jsp-api -->
 		<dependency><!--JSP dependency -->
 			<groupId>javax.servlet.jsp</groupId>
@@ -92,14 +99,14 @@
 			<artifactId>json-simple</artifactId>
 			<version>1.1.1</version>
 		</dependency>
-		
+
 	</dependencies>
 
 	<build>
 		<finalName>ScheduleManagementApp</finalName>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<plugins>
-		
+
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
@@ -117,7 +124,7 @@
 					<failOnMissingWebXml>false</failOnMissingWebXml> <!-- web.xml이 없을 때 에러를 낼건지 안낼건지 -->
 				</configuration>
 			</plugin>
-			
+
 		</plugins>
 	</build>
 </project>

@@ -17,6 +17,8 @@ private Map<String, Controller> handlerMapper = null;
 		handlerMapper.put("/studio/admin", new AdminController());
 		handlerMapper.put("/studio/reservation", new ReservationController());
 		handlerMapper.put("/studio/data", new DataController());
+		handlerMapper.put("/api/schedules", new apiScheduleController());
+		handlerMapper.put("/studio/admin/rsvCheck", new ManagerReservationCheck());
 		
 		/*
 		 * handlerMapper.put("/confirm", new ConfirmController());

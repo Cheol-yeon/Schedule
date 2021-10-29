@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gson.Gson;
 import com.webprj.di.entity.Reservation;
 
 public class RsvJdbcDao implements RsvDao{
@@ -92,7 +93,9 @@ public class RsvJdbcDao implements RsvDao{
 	@Override
 	public List<Reservation> getReservationList(String query) {
 		List<Reservation> rsvList = null;
-		String sql = "SELECT rsvno,studiono,studioloc,manno,TO_CHAR(rsvdate,'RRRRMM') rsvdate,TO_CHAR(stime, 'HH24:MI') st,TO_CHAR(etime, 'HH24:MI') et FROM Reservation";
+		String sql = "SELECT rsvno,studentno,profno,studiono,studioloc,manno,"
+				+ "TO_CHAR(rsvdate,'RRRRMM') rsvdate,TO_CHAR(stime, 'HH24:MI') st,"
+				+ "TO_CHAR(etime, 'HH24:MI') et FROM Reservation";
 		sql = sql + (query != null && !query.equals("") ? " WHERE " + query : " ORDER BY rsvdate");
 		
 		try {
@@ -104,12 +107,14 @@ public class RsvJdbcDao implements RsvDao{
 				while (rs.next()) {
 					Reservation rsv = new Reservation();
 					rsv.setRsvno(rs.getInt("rsvno"));
+					rsv.setStudentno(rs.getInt("studentno"));
+					rsv.setProfno(rs.getInt("profno"));
+					rsv.setManno(rs.getInt("manno"));
 					rsv.setStudiono(rs.getInt("studiono"));
 					rsv.setStudioloc(rs.getString("studioloc"));
 					rsv.setRsvDate(rs.getString("rsvDate"));
 					rsv.setStartTime(rs.getString("st"));//TO_CHAR(stime, 'HH24:MI')
 					rsv.setEndTime(rs.getString("et"));//TO_CHAR(etime, 'HH24:MI')
-					System.out.println(rsv.toString());
 					rsvList.add(rsv);
 				}
 			}
@@ -130,8 +135,11 @@ public class RsvJdbcDao implements RsvDao{
 	@Override
 	public List<Reservation> getRsvList(String query) {//JSON TEST
 		List<Reservation> rsvList = null;
-		String sql = "SELECT rsvno,studiono,studioloc,manno,TO_CHAR(rsvdate,'RRRRMMDD') rsvdate,TO_CHAR(stime, 'HH24:MI') st,TO_CHAR(etime, 'HH24:MI') et FROM Reservation";
-		sql = sql + (query != null && !query.equals("") ? " WHERE " + query : " ORDER BY rsvno");
+		String sql = "SELECT rsvno,studentno,profno,studiono,studioloc,manno,"
+				+ "TO_CHAR(rsvdate,'RRRRMMDD') rsvdate,TO_CHAR(stime, 'HH24:MI') st,"
+				+ "TO_CHAR(etime, 'HH24:MI') et FROM Reservation";
+		sql = sql + (query != null && !query.equals("") ? " WHERE " + query : " ORDER BY rsvdate");
+		
 		try {
 			connect();
 			stmt = conn.prepareStatement(sql);
@@ -141,12 +149,14 @@ public class RsvJdbcDao implements RsvDao{
 				while (rs.next()) {
 					Reservation rsv = new Reservation();
 					rsv.setRsvno(rs.getInt("rsvno"));
+					rsv.setStudentno(rs.getInt("studentno"));
+					rsv.setProfno(rs.getInt("profno"));
+					rsv.setManno(rs.getInt("manno"));
 					rsv.setStudiono(rs.getInt("studiono"));
 					rsv.setStudioloc(rs.getString("studioloc"));
-					rsv.setRsvDate(rs.getString("rsvDate"));//TO_CHAR(rsvdate,'RRRRMMDD') 
+					rsv.setRsvDate(rs.getString("rsvDate"));
 					rsv.setStartTime(rs.getString("st"));//TO_CHAR(stime, 'HH24:MI')
 					rsv.setEndTime(rs.getString("et"));//TO_CHAR(etime, 'HH24:MI')
-					//System.out.println(rsv.toString());
 					rsvList.add(rsv);
 				}
 			}

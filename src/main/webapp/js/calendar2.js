@@ -64,7 +64,9 @@ $(window).load(function() {//모든 페이지 구성요소 페인팅 완료 후 
 		var v = $("#checkedLoc1").val();
 		fetchData(`/studio/data?loc=${v}`, 'loc');
 	});
-	//////////ajax		
+	
+	/*ajax*/		
+	
 	async function fetchPage(url, daySet,pageVal) {//페이지 전환
 		console.log("async await 함수-페이지 전환");
 		try {
@@ -104,7 +106,7 @@ $(window).load(function() {//모든 페이지 구성요소 페인팅 완료 후 
 		if(json !=null){
 		if(pageVal === 'monthly'){
 			for (var value of json) {
-				//console.log(value);
+				console.log(value);
 				var day = value.rsvDate.substring(6,8);
 				var oneday = new Date(today.getFullYear(), today.getMonth(), day);
 				//console.log(oneday+"날짜에 <<"+value.rsvno+">>데이터 집어 놀예정");

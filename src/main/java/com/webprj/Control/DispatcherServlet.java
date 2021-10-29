@@ -56,7 +56,7 @@ public class DispatcherServlet extends HttpServlet {
 		StudioDao studioJdbc = new StudioJdbcDao(driver, url, userName, password);
 		RsvDao rsvJdbc = new RsvJdbcDao(driver, url, userName, password);
 
-		studioService = new StudioServiceImpl(loginJdbc,manJdbc,professorJdbc,studentJdbc,studioJdbc,rsvJdbc);
+		studioService = new StudioServiceImpl(loginJdbc, manJdbc, professorJdbc, studentJdbc, studioJdbc, rsvJdbc);
 
 		mapper = new HandlerMapping();
 	}
@@ -72,20 +72,25 @@ public class DispatcherServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		String path = request.getRequestURI();
-		System.out.println("path >>"+path);
+		System.out.println("path >>" + path);
 		String viewName = null;
-		
+
 		// step #2. data processing ==> dispatch request to controller
 		Controller handler = mapper.getHandler(path);
-		
-		if(path.contains("data")) {
-			System.out.println("IN data DispatcherServlet");
-			String data=handler.handleRequest(request, response, studioService);
+
+		if (path.contains("api")) {
+			System.out.println("IN api DispatcherServlet");
+			String data = handler.handleRequest(request, response, studioService);
 			// step #3. output processing results
 			response.setContentType("text/html;charset=UTF-8");
 			response.getWriter().write(data);
-			
-		}else {
+		} else if (path.contains("data")) {
+			System.out.println("IN data DispatcherServlet");
+			String data = handler.handleRequest(request, response, studioService);
+			// step #3. output processing results
+			response.setContentType("text/html;charset=UTF-8");
+			response.getWriter().write(data);
+		} else {
 			if (handler != null) {
 				viewName = handler.handleRequest(request, response, studioService);
 			}
@@ -105,7 +110,7 @@ public class DispatcherServlet extends HttpServlet {
 				view.forward(request, response);
 			}
 		}
-		
+
 	}
 
 	/**

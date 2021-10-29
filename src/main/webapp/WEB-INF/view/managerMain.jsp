@@ -136,7 +136,7 @@ function check(box) {
 </head>
 <body>
 	<div>
-		접속자 : ${manager.manname } <i class="fas fa-user-cog fa-3x" id="admin-icon"></i>
+		접속자 : ${loginManager.manname } <i class="fas fa-user-cog fa-3x" id="admin-icon"></i>
 	</div>
 	<h1 id="title">Schedule Management Platform</h1>
 
@@ -151,19 +151,20 @@ function check(box) {
 	<br>
 	<br>
 	<div style="text-align:center;">
-		<input type="button" id="studio" value="studiorsv" onclick="location.href='/studiorsv'" />
-		<input type="button" id="rental" value="rentalrsv" onclick="location.href='/rentalrsv'" />
-		<input type="button" id="btn3" value="btn3rsv" onclick="location.href='/btn3rsv'" />
-		<input type="button" id="btn4" value="btn4rsv" onclick="location.href='/btn4rsv'" />
+			<input type="button" id="studio" value="studiorsv" name="btn1" onclick="location.href='/api/schedules?btn=1'" />
+			<input type="button" id="rental" value="rentalrsv" name="btn2" onclick="location.href='/api/schedules?btn=2'" />
+			<input type="button" id="btn3" value="btn3rsv" name="btn3" onclick="location.href='/api/schedules?btn=3'" />
+			<input type="button" id="btn4" value="btn4rsv" name="btn4" onclick="location.href='/api/schedules?btn=4'" />
 	</div>
+	
+	<input type = "button" id="rsvCheck" value="예약목록확인" name="rsvCheck" onclick="location.href='/studio/admin/rsvCheck'"/>
 <!-- --------------------------------------------------------------------------------------------- -->
 	<div id="btnSetform" class="dialog">
 		<form method="POST" name="setting" action="/studio/admin">
 			<fieldset>
 				<div class="btnContainer" style="text-align : center;">
 					<div>
-						<input type="button" id="studio" value="studio"
-							onclick="location.href='/studio'" /> <label class="switch">
+						<input type="button" id="studio" value="studio" /> <label class="switch">
 							<input type="checkbox" value="studio" name="checkTest"
 							id="studiocheck" onClick="check(this)" /> <span
 							class="slider round"></span>
@@ -171,17 +172,14 @@ function check(box) {
 					</div>
 
 					<div>
-						<input type="button" id="rental" value="rental"
-							onclick="location.href='/rental'" /> <label class="switch">
-							<input type="checkbox" value="rental" name="checkTest"
-							id="rentalcheck" onClick="check(this)" /> <span
-							class="slider round"></span>
+						<input type="button" id="rental" value="rental"/> <label class="switch">
+							<input type="checkbox" value="rental" name="checkTest" id="rentalcheck" onClick="check(this)" /> 
+							<span class="slider round"></span>
 						</label>
 					</div>
 
 					<div>
-						<input type="button" id="btn3" value="btn3"
-							onclick="location.href='/btn3'" /> <label class="switch">
+						<input type="button" id="btn3" value="btn3" /> <label class="switch">
 							<input type="checkbox" value="btn3" name="checkTest"
 							id="btn3check" onClick="check(this)" /> <span
 							class="slider round"></span>
@@ -189,8 +187,7 @@ function check(box) {
 					</div>
 
 					<div>
-						<input type="button" id="btn4" value="btn4"
-							onclick="location.href='/btn4'" /> <label class="switch">
+						<input type="button" id="btn4" value="btn4" /> <label class="switch">
 							<input type="checkbox" value="btn4" name="checkTest"
 							id="btn4check" onClick="check(this)" /> <span
 							class="slider round"></span>
